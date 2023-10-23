@@ -11,5 +11,6 @@ namespace EtaLearning.API.Data
         Task DeleteAsync(int id);
         Task CreateAsync(Client client);
         Task<bool> IsClientExistsAsync(int id);
+        Task AddAsync(Client client);
     }
 }

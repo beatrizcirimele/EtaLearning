@@ -1,6 +1,8 @@
 ﻿using EtaLearning.API.Data;
+using EtaLearning.API.Data.Entities;
 using Microsoft.AspNetCore.Mvc;
 
+namespace EtaLearning.API.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
@@ -13,14 +15,14 @@ public class ClientsController : ControllerBase
         _clientRepository = clientRepository;
     }
 
-    [HttpGet("GetClients")]
+    [HttpGet()]
     public IActionResult GetClients()
     {
         var clients = _clientRepository.GetAllAsync();
         return Ok(clients);
     }
 
-    [HttpGet("ById/{id}")]
+    [HttpGet("{id}")]
     public async Task<IActionResult> GetClientById(int id)
     {
         var client = await _clientRepository.GetByIdAsync(id);
@@ -33,7 +35,7 @@ public class ClientsController : ControllerBase
         return Ok(client);
     }
 
-    [HttpPut("Edit/{id}")]
+    [HttpPut("{id}")]
     public async Task<IActionResult> EditClient(int id, [FromBody] string name)
     {
         var existingClient = await _clientRepository.GetByIdAsync(id);
@@ -52,7 +54,18 @@ public class ClientsController : ControllerBase
         return Ok(existingClient);
     }
 
-    [HttpDelete("Delete/{id}")]
+    [HttpPost("{id}")]
+    public async Task<IActionResult> CreateClient([FromBody] Client client)
+    {
+        if (client == null)
+        {
+            return BadRequest("Invalid client data. Please provide valid data.");
+        }
+        await _clientRepository.AddAsync(client);
+        return CreatedAtAction(nameof(GetClientById), new { id = client.Id }, client);
+    }
+
+    [HttpDelete("{id}")]
     public async Task<IActionResult> DeleteClient(int id)
     {
         var clientToDelete = await _clientRepository.GetByIdAsync(id);
@@ -63,11 +76,11 @@ public class ClientsController : ControllerBase
         }
 
         await _clientRepository.DeleteAsync(id);
-
-        return NoContent();
+        
+        return Ok();
     }
 
-    [HttpGet("CheckExistence/{id}")]
+    [HttpGet("{id}/exist")]
     public async Task<IActionResult> CheckClientExistence(int id)
     {
         var exists = await _clientRepository.IsClientExistsAsync(id);
