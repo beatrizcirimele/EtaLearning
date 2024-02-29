@@ -4,16 +4,19 @@ using EtaLearning.API.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace EtaLearning.API.Migrations
+namespace EtaLearning.DataAccess.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240216132759_AddClientIdColumnToSmartDevices")]
+    partial class AddClientIdColumnToSmartDevices
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -22,7 +25,7 @@ namespace EtaLearning.API.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("EtaLearning.DataAccess.Data.Entities.DbClient", b =>
+            modelBuilder.Entity("EtaLearning.API.Data.Entities.DbClient", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -43,9 +46,11 @@ namespace EtaLearning.API.Migrations
 
             modelBuilder.Entity("EtaLearning.DataAccess.Data.Entities.SmartDevice", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int>("ClientId")
                         .HasColumnType("int");
@@ -74,7 +79,7 @@ namespace EtaLearning.API.Migrations
 
             modelBuilder.Entity("EtaLearning.DataAccess.Data.Entities.SmartDevice", b =>
                 {
-                    b.HasOne("EtaLearning.DataAccess.Data.Entities.DbClient", "Client")
+                    b.HasOne("EtaLearning.API.Data.Entities.DbClient", "Client")
                         .WithMany("SmartDevices")
                         .HasForeignKey("ClientId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -83,7 +88,7 @@ namespace EtaLearning.API.Migrations
                     b.Navigation("Client");
                 });
 
-            modelBuilder.Entity("EtaLearning.DataAccess.Data.Entities.DbClient", b =>
+            modelBuilder.Entity("EtaLearning.API.Data.Entities.DbClient", b =>
                 {
                     b.Navigation("SmartDevices");
                 });

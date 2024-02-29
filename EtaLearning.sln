@@ -5,7 +5,9 @@ VisualStudioVersion = 17.6.33829.357
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtaLearning.API", "EtaLearning.API\EtaLearning.API.csproj", "{E0E906FA-EF91-43B6-8C10-D9D89D329A07}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtaLearning.DataAccess", "EtaLearning.DataAccess\EtaLearning.DataAccess.csproj", "{02B76018-182A-49D3-902C-18925FA1B015}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtaLearning.DataAccess", "EtaLearning.DataAccess\EtaLearning.DataAccess.csproj", "{02B76018-182A-49D3-902C-18925FA1B015}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtaLearning.Core", "EtaLearning.Core\EtaLearning.Core.csproj", "{C5D68157-20C1-476B-924B-AA4B6F8CEF36}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{02B76018-182A-49D3-902C-18925FA1B015}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{02B76018-182A-49D3-902C-18925FA1B015}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{02B76018-182A-49D3-902C-18925FA1B015}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C5D68157-20C1-476B-924B-AA4B6F8CEF36}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C5D68157-20C1-476B-924B-AA4B6F8CEF36}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C5D68157-20C1-476B-924B-AA4B6F8CEF36}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C5D68157-20C1-476B-924B-AA4B6F8CEF36}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
